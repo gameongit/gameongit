@@ -1,0 +1,371 @@
+   
+6c  binary search
+
+#include<stdio.h>
+#define size 5
+int binarysearch(int a[],int item)
+{
+	int pos=-1,low=0,high=size,mid=0;
+	while(low<=high)
+	{
+		mid=(low+high)/2;
+		if(a[mid]==key)
+		{
+			pos=mid;
+			break;
+		}
+		else if(key>a[mid])
+			low=mid+1;
+		else
+			high=mid-1;
+	}
+	return pos;
+}
+int main()
+{
+	int a[size],i=0,item,pos;
+	for(i=0;i<size;i++)
+	{
+		printf("Enter Element: ");
+		scanf("%d",&a[i]);
+	}
+		printf("\nEnter Item To be Searched:  ");
+		scanf("%d",&key);
+		pos=binarysearch(a,item);
+		if(pos>=0)
+			printf("\nItem Found at Position: %d\n",pos+1);
+		else
+			printf("\nItem Not Found");
+		return 0;
+}
+
+
+6b linear search
+
+#include <stdio.h>
+
+int linearSearch(int arr[], int n, int key) {
+    for (int i = 0; i < n; i++) {
+        if (arr[i] == key) {
+            return i; // element found, returning its index
+        }
+    }
+    return -1; // element not found
+}
+
+int main() {
+    int n, key;
+    
+    printf("Enter the size of the array: ");
+    scanf("%d", &n);
+
+    int arr[n];
+
+    printf("Enter the elements of the array: ");
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+
+    printf("Enter the key to search: ");
+    scanf("%d", &key);
+
+    int result = linearSearch(arr, n, key);
+
+    if (result == -1) {
+        printf("Element not found");
+    } else {
+        printf("Element found at index %d", result);
+    }
+
+    return 0;
+}
+
+
+
+
+
+5.
+A]	Write a program to implement Bubble Sort.
+
+#include<stdio.h>
+#include<malloc.h>
+int arr[20];
+void bubblesort(int n)
+{
+	int i,j,temp;
+	for(i=0;i<n;i++)
+	{
+	for(j=0;j<n-i-1;j++)
+	{
+		if(arr[j]>arr[j+1])
+		{
+			temp=arr[j];
+			arr[j]=arr[j+1];
+			arr[j+1]=temp;
+		}
+	}
+	}
+}
+void main()
+{
+	int n,i;
+	printf("Enter number of elements  ");
+	scanf("%d",&n);
+	for(i=0;i<n;i++)
+	{
+		printf("Enter %dth element",i);
+		scanf("%d",&arr[i]);
+	}
+	bubblesort(n);
+	for(i=0;i<n;i++)
+		printf("%d\n",arr[i]);
+}
+
+
+
+5b.Selection Sort
+
+#include<stdio.h>
+#include<malloc.h>
+int arr[20];
+void selectionsort(int n)
+{
+	int i,j,temp,min;
+	for(i=0;i<n;i++)
+	{
+	min=i;
+	for(j=i+1;j<n;j++)
+	{
+		if(arr[min]>arr[j])
+		{
+			min=j;
+		}
+	}
+	temp=arr[i];
+	arr[i]=arr[min];
+	arr[min]=temp;
+	}
+	printf("Successfully sorted using Selection Sort Algorithm\n");
+}
+void main()
+{
+	int n,i;
+	printf("Enter number of elements  ");
+	scanf("%d",&n);
+	for(i=0;i<n;i++)
+	{
+		printf("Enter %dth element",i);
+		scanf("%d",&arr[i]);
+	}
+	selectionsort(n);
+	for(i=0;i<n;i++)
+		printf("%d\n",arr[i]);
+}
+
+C]	Write a program to implement Insertion Sort.
+
+#include<stdio.h>
+#include<malloc.h>
+int arr[20];
+void insertionsort(int n)
+{
+	int i,val,temp;
+	for(i=1;i<n;i++)
+	{
+	val=arr[i];
+	temp=i;
+	while(arr[temp-1]>val&&temp!=0)
+	{
+		arr[temp]=arr[temp-1];
+		temp=temp-1;
+	}
+	arr[temp]=val;
+	}
+	printf("Successfully sorted using Insertion Sort Algorithm\n");
+}
+void main()
+{
+	int n,i;
+	printf("Enter number of elements  ");
+	scanf("%d",&n);
+	for(i=0;i<n;i++)
+	{
+		printf("Enter %dth element",i);
+		scanf("%d",&arr[i]);
+	}
+	insertionsort(n);
+	for(i=0;i<n;i++)
+		printf("%d\n",arr[i]);
+}
+
+
+
+3. Implement the following for Stack: 
+a. Write a program to implement the concept of Stack with Push, Pop, Display and Exit operations.
+
+#include<stdio.h>
+#include<conio.h>
+#define MAX 30
+int stack[MAX];
+int top =-1;   //Stack is empty.
+void push();
+int pop();
+int peek();
+void display();
+int main()
+{
+    int choice;
+	do
+	{
+		printf("\n **** Main Menu **** \n");
+		printf("1.Push\n");
+		printf("2.Pop \n");
+		printf("3.Peek \n");
+		printf("4.Display \n");
+		printf("Enter your choice :");
+		scanf("%d",&choice);
+		printf("\n");
+		switch(choice)
+		{
+			case 1: push();
+			break;
+			case 2 : pop();
+			break;
+			case 3 : peek();
+			break;
+			case 4 : display();
+			break;
+			case 5 : break;
+		}
+	}
+	while(choice!=5);
+	return 0;
+}
+void push()
+{
+    int val;
+	if(top == MAX -1)
+	{
+		printf("Stack is full.");
+	}		else
+		{
+			printf("Enter the value to be pushed : ");
+			scanf("%d",&val);
+			top++;
+			stack[top]=val;
+			printf("Successfully pushed.\n");
+		}
+}
+int pop()
+{
+	if(top == -1)
+	{
+		printf("Stack is already empty.");
+	}
+	else
+	{
+		int val = stack[top];
+		top--;
+		printf("The value is popped : %d",val);
+	}
+}
+int peek()
+{
+	if(top == -1)
+	{
+		printf("Stack is empty.");
+	}
+	else
+	{
+		int topmost = stack[top];
+	printf("The topmost element of stack : %d ",topmost);
+}
+}
+void display()
+{
+	if(top == -1)
+	{
+		printf("Stack is empty.");
+	}
+	else
+	{
+   int i;
+    printf("Stack is : ");
+    for(i=top;i>=0;i--)
+    {
+    	printf("\t%d",stack[i]);
+	}
+}
+}
+
+
+c. Write a program to implement Tower of Hanoi problem. 
+
+Tower of hanoi 
+
+
+#include<stdio.h>
+void TOH(int n,char source,char temp,char destination)
+{
+	if(n==1)
+	{
+		printf("Move disk from %c  to %c \n ",source,destination);
+		return;
+	}
+	TOH(n-1,source,destination,temp);
+	TOH(1,source,temp,destination);
+	TOH(n-1,temp,source,destination);
+}
+int main()
+{
+	int n;
+	printf("Enter the number of Disks:  ");
+	scanf("%d",&n );
+	TOH(n,'A','B','C');
+	return 0;
+}
+
+
+
+1.b  Read the two arrays from the user and merge them and display the elements in sorted order. [Menu Driven]
+
+#include<stdio.h>
+#include<conio.h>
+void main()
+{
+	int i,j,k,size1,size2,size3;
+	int arr1[size1],arr2[size2],arr3[size3];
+	printf("Enter the array size of array 1 :");
+	scanf("%d",&size1);
+	printf("Enter the element in array 1 :\n");
+	for(i=0;i<size1;i++)
+	{
+	 	scanf("%d",&arr1[i]);
+	 	arr3[i]=arr1[i];
+	}
+	size3=i;
+	printf("\nEnter the size of array 2 : ");
+	scanf("%d",&size2);
+	printf("Enter the element in array2 : \n");
+	for(j=0;j<size2;j++)
+	{
+	 	scanf("%d",&arr2[j]);
+	 	arr3[size3]=arr2[j];
+	 	size3++;
+	}
+	for(i=0;i<size3;i++)
+	{
+		for(j=i+1;j<size3;j++)
+		{
+			if(arr3[i]>arr3[j])
+			{
+				k=arr3[i];
+				arr3[i]=arr3[j];
+				arr3[j]=k;
+			}
+		}
+	}
+	printf("\n\nThe Merged Array in sorted order is:   \n");
+	for(i=0;i<size3;i++)
+		printf("%d\n",arr3[i]);
+}
