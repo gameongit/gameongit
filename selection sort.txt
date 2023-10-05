@@ -1,0 +1,40 @@
+
+B]	Write a program to implement Selection Sort.
+
+
+#include<stdio.h>
+#include<malloc.h>
+int arr[20];
+void selectionsort(int n)
+{
+	int i,j,temp,min;
+	for(i=0;i<n;i++)
+	{
+	min=i;
+	for(j=i+1;j<n;j++)
+	{
+		if(arr[min]>arr[j])
+		{
+			min=j;
+		}
+	}
+	temp=arr[i];
+	arr[i]=arr[min];
+	arr[min]=temp;
+	}
+	printf("Successfully sorted using Selection Sort Algorithm\n");
+}
+void main()
+{
+	int n,i;
+	printf("Enter number of elements  ");
+	scanf("%d",&n);
+	for(i=0;i<n;i++)
+	{
+		printf("Enter %dth element",i);
+		scanf("%d",&arr[i]);
+	}
+	selectionsort(n);
+	for(i=0;i<n;i++)
+		printf("%d\n",arr[i]);
+}
